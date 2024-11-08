@@ -14,7 +14,7 @@
 
   - name: Commit configuration to repository (RSA Key)
     ansible.builtin.shell: |
-      echo "$GITEA_USERNAME" > /tmp/temp_key
+      echo "$PRIVATE_KEY" > /tmp/temp_key
       chmod 600 /tmp/temp_key
       eval $(ssh-agent -s)
       ssh-add /tmp/temp_key

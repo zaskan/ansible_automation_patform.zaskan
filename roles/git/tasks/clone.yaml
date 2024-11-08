@@ -1,14 +1,14 @@
-- name: Clone configuration repository
+- name: Clone configuration repository using key
   ansible.builtin.git:
     repo: "{{ git_repository }}"
     dest: "{{ git_directory }}"
     clone: true
     update: true
     force: true
-    key_file: "{{ lookup('ansible.builtin.env', 'PRIVATE_KEY') | default(omit) }}"
-  when: use_key is defined and use_key == true
+    git_key_path: "{{ git_key_path | default(omit) }}"
+  when: git_key_path is defined 
 
-- name: Clone configuration repository
+- name: Clone configuration repository without credentials
   ansible.builtin.git:
     repo: "{{ git_repository }}"
     dest: "{{ git_directory }}"
