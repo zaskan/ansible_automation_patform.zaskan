@@ -10,14 +10,14 @@
       chdir: "{{ git_directory }}"
     ignore_errors: true
     register: git_result
-    when: lookup('env','GITEA_USERNAME') is defined
+    when: git_key_path is not defined
 
   - name: Commit configuration to repository (RSA Key)
     ansible.builtin.shell: |
       echo "$PRIVATE_KEY" > /tmp/temp_key
       chmod 600 /tmp/temp_key
       eval $(ssh-agent -s)
-      ssh-add /tmp/temp_key
+      ssh-add "{{ git_key_path }}"
       git config --global user.email "{{ git_email }}"
       git config --global user.name "{{ git_user }}"
       git pull
@@ -28,4 +28,4 @@
       chdir: "{{ git_directory }}"
     ignore_errors: true
     register: git_result
-    when: lookup('env','PRIVATE_KEY') is defined
+    when: git_key_path is defined
