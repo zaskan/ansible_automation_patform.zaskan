@@ -5,3 +5,4 @@
     clone: true
     update: true
     force: true
+    key_file: "{{ lookup('ansible.builtin.env', 'PRIVATE_KEY') | default(omit) }}"
