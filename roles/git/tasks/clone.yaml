@@ -7,6 +7,8 @@
     force: true
     key_file: "{{ lookup('env', 'PRIVATE_KEY') }}"
     ssh_opts: "-o StrictHostKeyChecking=no"
+    accept_hostkey: true
+    accept_newhostkey: true
   when: git_key_path is defined 
 
 - name: Clone configuration repository using http
