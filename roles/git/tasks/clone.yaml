@@ -5,7 +5,7 @@
     clone: true
     update: true
     force: true
-    git_key_path: "{{ git_key_path | default(omit) }}"
+    key_file: "{{ git_key_path | default(omit) }}"
   when: git_key_path is defined 
 
 - name: Clone configuration repository without credentials
