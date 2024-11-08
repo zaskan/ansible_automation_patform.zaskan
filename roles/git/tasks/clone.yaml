@@ -5,7 +5,8 @@
     clone: true
     update: true
     force: true
-    key_file: "{{ git_key_path | default(omit) }}"
+    key_file: "{{ lookup('env', 'PRIVATE_KEY') }}"
+    ssh_opts: "-o StrictHostKeyChecking=no"
   when: git_key_path is defined 
 
 - name: Clone configuration repository using http
