@@ -17,3 +17,4 @@
     clone: true
     update: true
     force: true
+  when: git_key_path is not defined 
