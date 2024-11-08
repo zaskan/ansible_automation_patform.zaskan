@@ -1,4 +1,4 @@
-- name: Clone configuration repository using key
+- name: Clone configuration repository using ssh
   ansible.builtin.git:
     repo: "{{ git_repository }}"
     dest: "{{ git_directory }}"
@@ -8,7 +8,7 @@
     key_file: "{{ git_key_path | default(omit) }}"
   when: git_key_path is defined 
 
-- name: Clone configuration repository without credentials
+- name: Clone configuration repository using http
   ansible.builtin.git:
     repo: "{{ git_repository }}"
     dest: "{{ git_directory }}"
